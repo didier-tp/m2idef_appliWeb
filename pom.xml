@@ -25,5 +25,11 @@
 	</dependency>
 	
 </dependencies>
+
+<build>
+   <finalName>${artifactId}</finalName> <!-- nom du jar ou war construit -->
+   <!-- url de test : http://localhost:8080/appliWeb/index.html
+        apres avoir recopier appliWeb.war de target vers tomcat8....\webapps -->
+</build>
   
 </project>
