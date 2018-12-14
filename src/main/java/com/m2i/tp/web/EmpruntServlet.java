@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 /**
  * Servlet implementation class EmpruntServlet
  */
@@ -37,14 +39,26 @@ public class EmpruntServlet extends HttpServlet {
 	    double mensualite = 
 	    		(montant * tauxMensuel) / ( 1 - Math.pow(1+tauxMensuel, -nbMois));
 	    
-	    response.setContentType("text/html");
-	    PrintWriter out = response.getWriter();
-	    out.println("<html><body>");
-	    out.println("pour rembourser un emprunt de "+montant + " euros ");
-	    out.println("sur une duree de "+nbMois + " mois ");
-	    out.println("avec un taux de "+tauxInteret + " % par an ");
-	    out.println("mensualite=<i>"+mensualite+"</i>");
-	    out.println("</body></html>");
+	    String format = request.getParameter("format");
+	    if(format ==null) {
+		    response.setContentType("text/html");
+		    PrintWriter out = response.getWriter();
+		    out.println("<html><body>");
+		    out.println("pour rembourser un emprunt de "+montant + " euros ");
+		    out.println("sur une duree de "+nbMois + " mois ");
+		    out.println("avec un taux de "+tauxInteret + " % par an ");
+		    out.println("mensualite=<i>"+mensualite+"</i>");
+		    out.println("</body></html>");
+	    }
+	    else if(format.equals("json")) {
+	    	response.setContentType("application/json");
+	    	PrintWriter out = response.getWriter();
+	    	Info info = new Info("titre1", "texteInfo1");
+	    	ObjectMapper jackjonMapper = new ObjectMapper();
+	    	String jsonString = 
+	    			jackjonMapper.writeValueAsString(info);
+	    	out.println(jsonString);
+	    }
 	    
 	}
 
