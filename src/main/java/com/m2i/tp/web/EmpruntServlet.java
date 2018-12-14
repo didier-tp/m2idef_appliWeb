@@ -43,7 +43,7 @@ public class EmpruntServlet extends HttpServlet {
 	    out.println("pour rembourser un emprunt de "+montant + " euros ");
 	    out.println("sur une duree de "+nbMois + " mois ");
 	    out.println("avec un taux de "+tauxInteret + " % par an ");
-	    out.println("mensualite=<b>"+mensualite+"</b>");
+	    out.println("mensualite=<i>"+mensualite+"</i>");
 	    out.println("</body></html>");
 	    
 	}
