@@ -25,6 +25,13 @@ public class ProduitServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DaoProduit daoProduit = new DaoProduitJdbc();
 		List<Produit> listeProduits = daoProduit.rechercherProduits();
+		//on stocke dans l'objet "request" une association
+		//entre le nom logique "listeProduits" et l'objet java listeProduits
+		//Lorsque le rd.forward(request,response) aura été déclanché,
+		//la page jsp pourra en interne appeler request.getAttribute("listeProduits");
+		//pour accéder aux données préparées et à afficher.
+		request.setAttribute("listeProduits", listeProduits);
+		
 		RequestDispatcher rd;
 		rd=this.getServletContext().getRequestDispatcher("/produits.jsp");
 		rd.forward(request, response);//effectuer une redirection vers la page jsp
