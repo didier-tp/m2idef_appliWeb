@@ -40,9 +40,10 @@ public class EmpruntServlet extends HttpServlet {
 	    		(montant * tauxMensuel) / ( 1 - Math.pow(1+tauxMensuel, -nbMois));
 	    
 	    String format = request.getParameter("format");
-	    if(format ==null) {
+	    PrintWriter out = response.getWriter();
+	    
+	    if(format ==null || format.equals("html")) {
 		    response.setContentType("text/html");
-		    PrintWriter out = response.getWriter();
 		    out.println("<html><body>");
 		    out.println("pour rembourser un emprunt de "+montant + " euros ");
 		    out.println("sur une duree de "+nbMois + " mois ");
@@ -52,12 +53,20 @@ public class EmpruntServlet extends HttpServlet {
 	    }
 	    else if(format.equals("json")) {
 	    	response.setContentType("application/json");
-	    	PrintWriter out = response.getWriter();
 	    	Info info = new Info("mensualite", String.valueOf(mensualite));
 	    	ObjectMapper jackjonMapper = new ObjectMapper();
 	    	String jsonString = 
 	    			jackjonMapper.writeValueAsString(info);
 	    	out.println(jsonString);
+	    }
+	    else if(format.equals("svg")) {
+	    	response.setContentType("image/svg+xml");
+	    	out.println("<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='400' height='350' >");
+	    	out.println("<rect width='100' height='80' x='0' y='70' fill='green' />");
+	    	out.println("<line x1='5' y1='5' x2='250' y2='95' stroke='red' />");
+	    	out.println("<circle cx='90' cy='80' r='50' fill='blue' />");
+	    	out.println("<text x='20' y='20'>mensualite="+mensualite+"</text>");
+	    	out.println("</svg>");
 	    }
 	    
 	}
