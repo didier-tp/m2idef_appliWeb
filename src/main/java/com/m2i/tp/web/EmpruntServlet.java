@@ -53,7 +53,7 @@ public class EmpruntServlet extends HttpServlet {
 	    else if(format.equals("json")) {
 	    	response.setContentType("application/json");
 	    	PrintWriter out = response.getWriter();
-	    	Info info = new Info("titre1", "texteInfo1");
+	    	Info info = new Info("mensualite", String.valueOf(mensualite));
 	    	ObjectMapper jackjonMapper = new ObjectMapper();
 	    	String jsonString = 
 	    			jackjonMapper.writeValueAsString(info);
