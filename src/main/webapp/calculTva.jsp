@@ -24,5 +24,6 @@
    </form>   <hr/>
    tva=<%=tva%>  <br/>
    ttc=<%=ttc%>  <br/>
+   <%@ include file="piedPage.jsp" %>
 </body>
 </html>
