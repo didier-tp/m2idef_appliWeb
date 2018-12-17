@@ -30,6 +30,7 @@ public class ProduitServlet extends HttpServlet {
 		DaoProduit daoProduit = new DaoProduitJdbc();
 		List<Produit> listeProduits = daoProduit.rechercherProduits();
 		out.println("<table border='1'>");
+		out.println("<tr><th>numero</th><th>label</th><th>prix</th></tr>");
 		for(Produit prod : listeProduits) {
 			out.println("<tr>");
 				out.println("<td>"+ prod.getNumero() + "</td>");
