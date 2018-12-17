@@ -9,14 +9,16 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <!--  
+  <!-- 
   <servlet>
-      <servlet-name>sQueJaime</servlet-name>
-      <servlet-class>com.m2i.tp.web.EmpruntServlet</servlet-class>
+    <description></description>
+    <display-name>ProduitServlet</display-name>
+    <servlet-name>ProduitServlet</servlet-name>
+    <servlet-class>com.m2i.tp.web.ProduitServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-       <servlet-name>sQueJaime</servlet-name>
-       <url-pattern>/EmpruntServlet</url-pattern>
+    <servlet-name>ProduitServlet</servlet-name>
+    <url-pattern>/ProduitServlet</url-pattern>
   </servlet-mapping>
   -->
 </web-app>
