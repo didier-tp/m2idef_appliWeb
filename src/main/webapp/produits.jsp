@@ -4,7 +4,9 @@ List<Produit> listeProduits = (List<Produit>)
                 request.getAttribute("listeProduits");
 %>
 <html>
-<head><title>produits</title></head>
+<head>
+ <link rel="stylesheet" href="styles.css">
+ <title>produits</title></head>
 <body>
 	<h3>** liste des produits **</h3>
 	<table border="1">
