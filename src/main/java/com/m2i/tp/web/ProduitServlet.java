@@ -1,9 +1,9 @@
 package com.m2i.tp.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,12 +23,18 @@ public class ProduitServlet extends HttpServlet {
       
 	//<a href="./ProduitServlet">liste des produits (servlet+dao+jsp)</a><br/>
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		DaoProduit daoProduit = new DaoProduitJdbc();
+		List<Produit> listeProduits = daoProduit.rechercherProduits();
+		RequestDispatcher rd;
+		rd=this.getServletContext().getRequestDispatcher("/produits.jsp");
+		rd.forward(request, response);//effectuer une redirection vers la page jsp
+		//tout l'affichage est ainsi déléguer à la page JSP.
+		/*
+		//ancienne version sans page jsp:
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		out.println("<html><body>");
 		out.println("<h3>liste des produits</h3>");
-		DaoProduit daoProduit = new DaoProduitJdbc();
-		List<Produit> listeProduits = daoProduit.rechercherProduits();
 		out.println("<table border='1'>");
 		out.println("<tr><th>numero</th><th>label</th><th>prix</th></tr>");
 		for(Produit prod : listeProduits) {
@@ -40,6 +46,7 @@ public class ProduitServlet extends HttpServlet {
 		}
 		out.println("</table>");
 		out.println("</body></html>");
+		*/
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
