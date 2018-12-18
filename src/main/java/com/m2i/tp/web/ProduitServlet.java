@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.m2i.tp.dao.DaoProduit;
 import com.m2i.tp.dao.DaoProduitJdbc;
@@ -32,7 +33,9 @@ public class ProduitServlet extends HttpServlet {
 		//Lorsque le rd.forward(request,response) aura été déclanché,
 		//la page jsp pourra en interne appeler request.getAttribute("listeProduits");
 		//pour accéder aux données préparées et à afficher.
-		request.setAttribute("listeProduits", listeProduits);
+		//request.setAttribute("listeProduits", listeProduits);
+		HttpSession session = request.getSession();//accès à l'objet session "utilisateur"
+		session.setAttribute("listeProduits", listeProduits);
 		
 		RequestDispatcher rd;
 		rd=this.getServletContext().getRequestDispatcher("/produits.jsp");

@@ -1,7 +1,7 @@
 <%@ page import="java.util.List,com.m2i.tp.entity.Produit" %>
 <%
 List<Produit> listeProduits = (List<Produit>)
-                request.getAttribute("listeProduits");
+                /*request*/session.getAttribute("listeProduits");
 %>
 <html>
 <head>

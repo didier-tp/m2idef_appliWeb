@@ -8,6 +8,7 @@
 	<table border="1">
 	   <tr><th>numero</th><th>label</th><th>prix</th></tr>
 	   <!-- ${listeProduits} ou bien ${requestScope.listeProduits} 
+	        ou bien ${sessionScope.listeProduits}
 	        avec request.getAttribute("listeProduits") automatique-->
 	   <c:forEach items="${listeProduits}" var="prod">
 	      <tr><td>${prod.numero}</td>
@@ -15,5 +16,7 @@
 	          <td>${prod.prix}</td></tr>
 	   </c:forEach>
 	</table>
+	<hr/>
+	<a href="addInCaddy.jsp">addInCaddy</a>
 </body>
 </html>
