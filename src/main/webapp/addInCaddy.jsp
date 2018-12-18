@@ -8,14 +8,16 @@
 <title>addInCaddy</title>
 </head>
 <% Integer nbElts = 0;
-//...
+String chProduit = request.getParameter("produit");
+System.out.println("produit="+chProduit);
 %>
 <body>
     <form method="post"> 
        <!-- sans action la page se rappelle elle meme -->
         produit: <select name="produit">
                     <c:forEach items="${listeProduits}" var="prod">
-                         <option>${prod.label}</option>
+                         <option value="${prod.numero}" >
+                            ${prod.label} , ${prod.prix} euros</option>
                     </c:forEach>
                  </select> <br/>
         quantite: <input name="quantite" value="1" /> <br/>
