@@ -4,6 +4,7 @@ public class Produit {
 	private Long numero;
 	private String label;
 	private Double prix;
+	private Long ref_categorie;
 	//...
 	//+get/set , constructurs , toString
 	
@@ -15,6 +16,7 @@ public class Produit {
 		this.prix = prix;
 	}
 	
+	
 	public Produit() {
 		super();
 	}
@@ -23,7 +25,8 @@ public class Produit {
 
 	@Override
 	public String toString() {
-		return "Produit [numero=" + numero + ", label=" + label + ", prix=" + prix + "]";
+		return "Produit [numero=" + numero + ", label=" + label + ", prix=" + prix + ", ref_categorie=" + ref_categorie
+				+ "]";
 	}
 
 	public Long getNumero() {
@@ -44,6 +47,14 @@ public class Produit {
 	}
 	public void setPrix(Double prix) {
 		this.prix = prix;
+	}
+
+	public Long getRef_categorie() {
+		return ref_categorie;
+	}
+
+	public void setRef_categorie(Long ref_categorie) {
+		this.ref_categorie = ref_categorie;
 	}
 	
 }

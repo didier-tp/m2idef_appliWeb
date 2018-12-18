@@ -24,7 +24,9 @@ public class ProduitServlet extends HttpServlet {
 	//<a href="./ProduitServlet">liste des produits (servlet+dao+jsp)</a><br/>
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DaoProduit daoProduit = new DaoProduitJdbc();
-		List<Produit> listeProduits = daoProduit.rechercherProduits();
+		String chNumCategorie=request.getParameter("numCategorie");
+		Long numCategorie = (chNumCategorie==null)?1L:Long.parseLong(chNumCategorie);
+		List<Produit> listeProduits = daoProduit.rechercherProduits(numCategorie);
 		//on stocke dans l'objet "request" une association
 		//entre le nom logique "listeProduits" et l'objet java listeProduits
 		//Lorsque le rd.forward(request,response) aura été déclanché,
