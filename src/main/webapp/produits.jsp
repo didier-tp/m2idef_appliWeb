@@ -1,21 +1,19 @@
-<%@ page import="java.util.List,com.m2i.tp.entity.Produit" %>
-<%
-List<Produit> listeProduits = (List<Produit>)
-                request.getAttribute("listeProduits");
-%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
  <link rel="stylesheet" href="styles.css">
  <title>produits</title></head>
 <body>
-	<h3>** liste des produits **</h3>
+	<h3>*** liste des produits ***</h3>
 	<table border="1">
 	   <tr><th>numero</th><th>label</th><th>prix</th></tr>
-	   <%for(Produit prod : listeProduits) { %>
-	      <tr><td><%=prod.getNumero()%></td>
-	          <td><%=prod.getLabel()%></td>
-	          <td><%=prod.getPrix()%></td></tr>
-	   <%}%>
+	   <!-- ${listeProduits} ou bien ${requestScope.listeProduits} 
+	        avec request.getAttribute("listeProduits") automatique-->
+	   <c:forEach items="${listeProduits}" var="prod">
+	      <tr><td>${prod.numero}</td>
+	          <td>${prod.label}</td>
+	          <td>${prod.prix}</td></tr>
+	   </c:forEach>
 	</table>
 </body>
 </html>

@@ -33,6 +33,13 @@
 	    <!-- en scope=compile ou runtime , mysql-connector.jar
 	         est placé dans WEB-INF/lib du .war construit à deployer dans tomcat -->
 	</dependency>
+	
+	<dependency> <!--  jstl = java standard tag library -->
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>jstl</artifactId>
+	    <version>1.2</version>
+	</dependency>
+	
   
   
 	<dependency>
