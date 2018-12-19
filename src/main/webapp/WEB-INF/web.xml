@@ -9,16 +9,7 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <!-- 
-  <servlet>
-    <description></description>
-    <display-name>ProduitServlet</display-name>
-    <servlet-name>ProduitServlet</servlet-name>
-    <servlet-class>com.m2i.tp.web.ProduitServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ProduitServlet</servlet-name>
-    <url-pattern>/ProduitServlet</url-pattern>
-  </servlet-mapping>
-  -->
+  <listener>
+    <listener-class>com.m2i.tp.web.MyListenerClass</listener-class>
+  </listener>
 </web-app>
