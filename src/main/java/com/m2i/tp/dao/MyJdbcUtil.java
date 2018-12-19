@@ -7,9 +7,46 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
+import javax.sql.DataSource;
+
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
 public class MyJdbcUtil {
 	
-	public static Connection seConnecter() {
+	private static DataSource ds =null;
+	
+	public static DataSource initDataSource() {
+		 //plein de variantes : avec ou sans pool/recyclage
+		                                   //      via lookup JNDI et serveur JEE ou via techno et paramétrage de l'appli
+		if(ds==null) {
+			ComboPooledDataSource cpds = new ComboPooledDataSource();
+		    cpds.setJdbcUrl("jdbc:mysql://localhost:3306/baseprod?serverTimezone=UTC");
+			cpds.setUser("root");
+			cpds.setPassword("");
+		    // Optional Settings
+		   	cpds.setInitialPoolSize(2);
+		   	cpds.setMinPoolSize(2);
+		   	cpds.setMaxPoolSize(10);
+		   	System.out.println("cpds="+cpds.toString());
+		    ds=cpds;
+		}
+		return ds;
+	}
+	
+	public static /* ou pas static*/ Connection seConnecter() {
+		DataSource ds = initDataSource();
+		Connection cn = null;
+		try {
+			cn = ds.getConnection(); //appel simple sans aucun paramètre à fournir
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cn;
+	}
+	
+	
+	//ancien nom : seConnecter() , nouveau nom seConnecterSansPool()
+	public static Connection seConnecterSansPool() {
 		Connection cn=null;
 		try {
 			ResourceBundle ressources = ResourceBundle.getBundle("myDatabase") ; 
