@@ -3,6 +3,7 @@ package com.m2i.tp.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,6 +28,16 @@ public class EmpruntServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		ServletContext application = this.getServletContext();
+		synchronized(application){
+			Integer objCompteur = (Integer) application.getAttribute("compteur");
+			objCompteur = new Integer ( objCompteur.intValue() + 1);
+			application.setAttribute("compteur", objCompteur);
+			System.out.println("compteur incrementé="+objCompteur);
+		}
+		
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	    String chNbMois = request.getParameter("nbMois");
 	    int nbMois = Integer.parseInt(chNbMois);
