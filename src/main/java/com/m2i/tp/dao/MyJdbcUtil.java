@@ -19,9 +19,18 @@ public class MyJdbcUtil {
 		 //      via lookup JNDI et serveur JEE ou via techno et paramétrage de l'appli
 		if(ds==null) {
 			ComboPooledDataSource cpds = new ComboPooledDataSource();
-			try{ cpds.setDriverClass("com.mysql.cj.jdbc.Driver"); }catch(Exception e) { e.printStackTrace();}
-		    cpds.setJdbcUrl("jdbc:mysql://localhost:3306/baseprod?serverTimezone=UTC");
-			cpds.setUser("root");	cpds.setPassword("");
+			try{ 
+			ResourceBundle ressources = ResourceBundle.getBundle("myDatabase") ; 
+			// myDatabase.properties
+			String jdbcDriver = ressources.getString("jdbcDriver"); //"com.mysql.cj.jdbc.Driver"
+			String dbUrl = ressources.getString("dbUrl");//"jdbc:mysql://localhost:3306/baseprod?serverTimezone=UTC"
+			String username = ressources.getString("username"); //"root"
+			String password = ressources.getString("password");//""
+			cpds.setDriverClass(jdbcDriver ); 
+		    cpds.setJdbcUrl(dbUrl);
+			cpds.setUser(username);	
+			cpds.setPassword(password);
+			}catch(Exception e) { e.printStackTrace();}
 		    // Optional Settings:
 		   	cpds.setInitialPoolSize(2);		   	cpds.setMinPoolSize(2);		   	cpds.setMaxPoolSize(10);
 		   	System.out.println("cpds="+cpds.toString());
