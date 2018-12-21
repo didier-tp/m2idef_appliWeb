@@ -18,16 +18,32 @@ import com.m2i.tp.entity.Blague;
 @WebServlet("/BlagueServlet")
 public class BlagueServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-      
-	//<a href="./BlagueServlet">liste des blagues (servlet+dao+jsp)</a><br/>
+     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String task = request.getParameter("task");
-		
 		DaoBlague daoBlague = new DaoBlagueJdbc();
 		
 		if(task!=null && task.equals("ajout")) {
 			Blague nouvelleBlague = new Blague(null,request.getParameter("titre"),request.getParameter("texte"),null,null);
 			daoBlague.ajouterBlague(nouvelleBlague);
+		}
+		
+		if(task!=null && task.equals("noter")) {
+			Long idBlague = Long.parseLong(request.getParameter("blagueId"));
+			Double nouvelleNote = Double.parseDouble(request.getParameter("nouvelleNote"));
+			Blague blague = daoBlague.rechercherBlagueSelonId(idBlague);
+			Integer nbVotes = blague.getNbVotes();
+			if(nbVotes==null || nbVotes==0) {
+				blague.setNote(nouvelleNote); blague.setNbVotes(1);
+			}else {
+			   Double note = blague.getNote(); //ancienne note moyenne
+			   //calcul nouvelle note moyenne:
+			   note = (nouvelleNote + note * nbVotes) / (nbVotes + 1);
+			   //mise à jour de l'objet java qui sera "updaté en base":
+			   blague.setNote(note); 
+			   blague.setNbVotes(nbVotes + 1);
+			}
+			daoBlague.modifierBlague(blague);
 		}
 		//dans tous les cas (task null ou suite à "ajout" ou "liste") :
 		List<Blague> listeBlagues = daoBlague.rechercherBlagues();
