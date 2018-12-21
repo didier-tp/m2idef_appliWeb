@@ -11,6 +11,24 @@ import java.util.List;
 import com.m2i.tp.entity.Blague;
 
 public class DaoBlagueJdbc implements DaoBlague {
+	
+	//************ DEBUT design pattern "SINGLETON" **********
+	public static DaoBlagueJdbc uniqueInstance=null;
+	
+	public static DaoBlagueJdbc getInstance() {
+		if(uniqueInstance==null) {
+			//construire uniqueInstance que si elle n'a pas encore été construite
+			uniqueInstance = new DaoBlagueJdbc();
+		}
+		//dans tous les cas , retourner l'unique instance construite (récemment ou depuis longtemps):
+		return uniqueInstance;
+	}
+	
+	private DaoBlagueJdbc() {
+		//constructeur ici volontairement privé pour interdire new en direct depuis une autre classe
+	}
+	
+	//************ FIN design pattern "SINGLETON" **********
 
 	@Override
 	public List<Blague> rechercherBlagues() {

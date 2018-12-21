@@ -11,7 +11,7 @@ public class TestDao {
 	public static void main(String[] args) {
 		// Classe de Test avec un main()
 		// en atendant de voir JUnit plus tard
-		DaoProduitJdbc daoProduit = new DaoProduitJdbc();
+		DaoProduitJdbc daoProduit = new DaoProduitJdbc(); //sans singleton 
 		Produit np = new Produit(null,"nouveau livre",10.0);
 		np.setRef_categorie(2L);
 		daoProduit.ajouterProduit(np);
@@ -35,7 +35,8 @@ public class TestDao {
 		
 		System.out.println("**************************");
 		
-		DaoBlagueJdbc daoBlague = new DaoBlagueJdbc();
+		DaoBlagueJdbc daoBlague = DaoBlagueJdbc.getInstance();   //avec singleton
+		/*DaoBlagueJdbc daoBlague = new DaoBlagueJdbc(); sans singleton */
 		System.out.println(daoBlague.rechercherBlagues());
 		Blague b1 = daoBlague.rechercherBlagueSelonId(1L);
 		System.out.println("blague 1=" + b1);

@@ -21,7 +21,8 @@ public class BlagueServlet extends HttpServlet {
      
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String task = request.getParameter("task");
-		DaoBlague daoBlague = new DaoBlagueJdbc();
+		DaoBlague daoBlague = DaoBlagueJdbc.getInstance(); //avec singleton
+		/*  new DaoBlagueJdbc(); sans singleton */
 		
 		if(task!=null && task.equals("ajout")) {
 			Blague nouvelleBlague = new Blague(null,request.getParameter("titre"),request.getParameter("texte"),null,null);
