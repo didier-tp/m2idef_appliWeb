@@ -50,6 +50,12 @@ INSERT INTO produit(numero,label,prix,ref_categorie) VALUES (8,'CD2',9.5,3);
 INSERT INTO blague(id,titre,texte,note,nbVotes) VALUES (1,'blague pourrie','JSP=Je Sais Pas',2.0,1);
 INSERT INTO blague(id,titre,texte,note,nbVotes) VALUES (2,'blague pour sans cervelle','Cervelet ou Servlet?',2.0,1);
 INSERT INTO blague(id,titre,texte,note,nbVotes) VALUES (3,'blague de la chaise','elle est pliante',2.0,1);
+INSERT INTO blague(id,titre,texte,note,nbVotes) VALUES (4,'ni queue ni tete','connais tu la blague de eunuque qui sait fait decapiter ? Non . Tu perds rien elle a ni queue ni tete',2.0,1);
+INSERT INTO blague(id,titre,texte,note,nbVotes) VALUES (5,'Halloween','allo win , ici trouille',2.0,1);
+INSERT INTO blague(id,titre,texte,note,nbVotes) VALUES (6,'prenom nom','Jean Bon , Axelle Aire , Alex Therieur, ...',2.0,1);
+INSERT INTO blague(id,titre,texte,note,nbVotes) VALUES (7,'blonde devant ascenseur','Appelle ascenseur STP . Ascenseur, ascenseur ! Non , pas comme ca avec le doigt . assssr , assc (avec doigt dans la bouche)!',2.0,1);
+INSERT INTO blague(id,titre,texte,note,nbVotes) VALUES (8,'blague de grande surface','une blague qui a pas super marche',2.0,1);
+INSERT INTO blague(id,titre,texte,note,nbVotes) VALUES (9,'pingouin','un pingouin respirait par les fesses. il se est assi . il en est mort',2.0,1);
 
 SELECT * FROM categorie;
 SELECT * FROM produit;
