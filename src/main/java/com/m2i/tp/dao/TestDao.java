@@ -1,5 +1,6 @@
 package com.m2i.tp.dao;
 
+import com.m2i.tp.entity.Blague;
 import com.m2i.tp.entity.Categorie;
 import com.m2i.tp.entity.Produit;
 
@@ -31,6 +32,25 @@ public class TestDao {
 		daoCategorie.supprimerCategorie(nc.getId());
 		System.out.println("-----");
 		System.out.println(daoCategorie.rechercherCategories());
+		
+		System.out.println("**************************");
+		
+		DaoBlagueJdbc daoBlague = new DaoBlagueJdbc();
+		System.out.println(daoBlague.rechercherBlagues());
+		Blague b1 = daoBlague.rechercherBlagueSelonId(1L);
+		System.out.println("blague 1=" + b1);
+		b1.setNote(3.3);
+		b1.setNbVotes(b1.getNbVotes()+1);
+		daoBlague.modifierBlague(b1);
+		b1 = daoBlague.rechercherBlagueSelonId(1L);
+		System.out.println("blague 1=" + b1);
+		Blague nb = new Blague(null,"nouvelle blague" , "texte drole " , null , null);
+		daoBlague.ajouterBlague(nb);
+		System.out.println("id nb="+nb.getId());
+		System.out.println(daoBlague.rechercherBlagues());
+		daoBlague.supprimerBlague(nb.getId());
+		System.out.println("-----");
+		System.out.println(daoBlague.rechercherBlagues());
 		
 		
 		
